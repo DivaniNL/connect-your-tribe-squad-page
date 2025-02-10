@@ -50,6 +50,7 @@ app.get('/', async function (request, response) {
 
   // En haal daarvan de JSON op
   const personResponseJSON = await personResponse.json()
+  console.log(personResponseJSON);
   
   // personResponseJSON bevat gegevens van alle personen uit alle squads van dit jaar
   // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
