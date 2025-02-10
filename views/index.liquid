@@ -3,7 +3,7 @@
 <h2>Students</h2>
 <ul>
   {% for person in persons %}
-    <pre>{{person | json}}</pre>
+    <pre>{{ person | json | replace: ',', ',\n' | replace: '{', '{\n' | replace: '[', '[\n' }}</pre>
     <img src="{{person.avatar}}" alt="">
     <li><a href="/student/{{ person.id }}">{{ person.name }}</a></li>
   {% endfor %}

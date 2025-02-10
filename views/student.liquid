@@ -1,7 +1,7 @@
 {% render 'partials/head.liquid', title: person.name %}
 
 <a href="/">Back</a>
-<pre>{{person | json}}</pre>
+<pre>{{ person | json | replace: ',', ',\n' | replace: '{', '{\n' | replace: '[', '[\n' }}</pre>
 <img src="{{person.avatar}}" alt="">
 <li><a href="/student/{{ person.id }}">{{ person.name }}</a></li>
 {% render 'partials/foot.liquid', squads: squads %}
