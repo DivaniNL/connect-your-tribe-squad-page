@@ -55,6 +55,7 @@ main{
                     grid-row: 1 / 1;
                     grid-column: 3 / 3;
                     order: 2;
+                    width: 58px;
                     height: 58px;
                     display: flex;
                     aspect-ratio: 1 / 1;
