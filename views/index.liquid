@@ -1,12 +1,16 @@
 {% render 'partials/head.liquid', title: 'Squad page' %}
+{% render 'partials/header.liquid' %}
+
+<main>
+
+  <div class="grid-giver">
+    <div class="grid-receiver">
+      {% render 'partials/filters.liquid' %}
+      {% render 'partials/results.liquid' persons: persons %}
+    </div>
+  </div>
+
+</main>
 
 <h2>Students</h2>
-<ul>
-  {% for person in persons %}
-    <pre>{{ person | json | replace: ',', ',\n' | replace: '{', '{\n' | replace: '[', '[\n' }}</pre>
-    <img src="{{person.avatar}}" alt="">
-    <li><a href="/student/{{ person.id }}">{{ person.name }}</a></li>
-  {% endfor %}
-</ul>
-
 {% render 'partials/foot.liquid', squads: squads %}

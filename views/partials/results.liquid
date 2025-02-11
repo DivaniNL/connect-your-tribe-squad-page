@@ -1,0 +1,12 @@
+<div class="part-results">
+    <section class="person-list">
+        {% for person in persons %}
+            <article class="one-person">
+                <a href="/student/{{ person.id }}">
+                    <img src="{{person.avatar}}" alt="">
+                    {{ person.name }}
+                </a>
+            </article>
+        {% endfor %}
+    </section>
+</div>

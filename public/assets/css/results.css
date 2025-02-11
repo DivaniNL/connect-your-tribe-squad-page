@@ -1,0 +1,28 @@
+.part-results{
+    padding: 25px 20px;
+    
+    section.person-list{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+        @media (min-width: 600px){
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (min-width: 860px){
+            grid-template-columns: repeat(3, 1fr);
+        }
+        article.one-person{
+            a{
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+    @media (min-width: 600px){
+        padding: 45px 30px;
+    }
+    @media (min-width: 860px){
+        padding: 90px 60px;
+    }
+}
