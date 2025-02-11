@@ -38,6 +38,12 @@ a {
         font-size: var(--font-size-xl);
     }
 }
+.text-l{
+    font-size: var(--font-size-m);
+    @media (min-width: 860px) {
+        font-size: var(--font-size-l);
+    }
+}
 main{
     padding: 20px 0;
     .grid-giver {
@@ -71,16 +77,28 @@ main{
 /* Buttons */
 button.button-form{
     appearance: none;
-
+    cursor: pointer;
     padding: 5px;
     border: 3px solid var(--color-primary);
     background-color: var(--color-primary-lighter);
     display: flex;
+    max-height: 89px;
+    max-width: 88px;
+    height: 100%;
+    width: 100%;
     >svg{
         display: block;
     }
     @media (min-width: 335px){
         padding: 9px;
+    }
+    &:focus, &:hover{
+        background-color: var(--color-active-filter);
+        border-color: var(--color-active-filter-border);
+        outline-color: var(--color-active-filter-border); 
+        &+label{
+            color: var(--color-active-filter-border);
+        }
     }
 }
 

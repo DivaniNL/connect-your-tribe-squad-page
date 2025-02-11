@@ -1,0 +1,22 @@
+<article class="one-person">
+    <a href="/student/{{ person.id }}" aria-label="Bekijk profiel van {{ person.name }}" class="profile-link">
+
+        <figure>
+            {% if person.avatar != "" and person.avatar != null %}
+                <img src="{{person.avatar}}" alt="Profielfoto van {{ person.name }}" class="profile-image">
+            {% else %}
+                <img src="assets/img/placeholder.png" alt="Geen profielfoto beschikbaar voor {{ person.name }}" class="profile-image">
+            {% endif %}
+            {% if person.fav_color != "" and person.fav_color != null %}
+                <div class="background-fav_color" style="background-color: {{ person.fav_color }}"></div>
+            {% endif %}
+        </figure>
+        <div class="content">
+            <h3 class="font-size-l name-field" data-name="{{ person.name }}" data-nickname="{{ person.nickname }}">
+                {{ person.name }}
+            </h3>
+            {{ person.bio }}
+        </div>
+
+    </a>
+</article>

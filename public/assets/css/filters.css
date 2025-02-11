@@ -25,19 +25,30 @@ main{
                     white-space: nowrap;
                     border: 0;
                 }
-                input#searchInput{
+                input#search{
                     grid-column: 1 / 4;
                     grid-row: 1 / 1;
                     order: 1;
                     width: calc(100% - 73px);
                     padding: 0 7px;
                     border: 0;
+                    border: 3px solid var(--color-primary);
+                    background-color: var(--color-primary-lighter);
+                    font-family: var(--font-family);
+                    font-weight: bold;
+                    color: var(--color-black);
+                    font-size: var(--font-size-l);
                     &::placeholder{
-                        font-family: var(--font-family);
-                        font-weight: bold;
                         color: var(--color-black);
-                        font-size: var(--font-size-l);
-                        translate: 0 5px;
+                    }
+                    &:focus-visible, &:hover{
+                        background-color: var(--color-active-filter);
+                    }
+                    &:focus{
+                        outline-color: var(--color-active-filter-border);
+                    }
+                    &:hover{
+                        border-color: var(--color-active-filter-border);
                     }
                 }
                 button#searchSubmit{
@@ -50,6 +61,17 @@ main{
                     justify-content: center;
                     margin-left: auto;
                     align-items: center;
+                    background-color: var(--color-white);
+                    &:focus-visible, &:hover{
+                        background-color: var(--color-active-filter);
+                    }
+                    &:focus{
+                        outline-color: var(--color-active-filter-border);
+                    }
+                    &:hover{
+                        border-color: var(--color-active-filter-border);
+                    }
+                    
                 }
             }
 
@@ -68,9 +90,16 @@ main{
                 &.button-form-container-name-mode{
                     grid-row: 2 / 2;
                     align-items: flex-start;
+                    
                     .button-form-name-mode{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
                         .icon-ひと{
                             display: none;
+                            display: none;
+                            font-size: 2rem;
+                            font-weight: bold;
                         }
                     }
 
@@ -84,6 +113,11 @@ main{
                 label{
                     font-size: 0.75rem;
                     max-width: 89px;
+                    font-weight: bold;
+                    text-align: center;
+                    width: 100%;
+                    min-height: 38px;
+                
                     @media (min-width :335px){
                         font-size: 1rem;
                     }
@@ -99,7 +133,9 @@ main{
                     height: 100%;
                     align-items: flex-end;
                     select#filter-dish{
+                        cursor: pointer;
                         max-width: 89px;
+                        max-height: 88px;
                         width: 100%;
                         height: 100%;
                         text-align: center;
@@ -113,13 +149,25 @@ main{
                         border: 3px solid var(--color-primary);
                         background-color: var(--color-primary-lighter);
                         display: flex;
+                        font-size: 0.75rem;
+                        font-family: var(--font-family);
+                        font-weight: bold;
                         @media (min-width :335px){
                             padding: 14px 14px 14px 7px;
+                        }
+                        &:focus, &:hover{
+                            background-color: var(--color-active-filter);
+                            border-color: var(--color-active-filter-border);
+                            outline-color: var(--color-active-filter-border);
+                            &+label{
+                                color: var(--color-active-filter-border);
+                            }
                         }
                     }
                     label.filter-dish-label{
                         width: 89px;
                         font-size: 0.75rem;
+                        font-weight: bold;
                         @media (min-width :335px){
                             font-size: 1rem;
                         }

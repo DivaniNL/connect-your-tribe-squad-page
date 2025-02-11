@@ -1,12 +1,9 @@
 <div class="part-results">
     <section class="person-list">
+
+        <h2 class="text-xl">Resultaten</h2>
         {% for person in persons %}
-            <article class="one-person">
-                <a href="/student/{{ person.id }}">
-                    <img src="{{person.avatar}}" alt="">
-                    {{ person.name }}
-                </a>
-            </article>
+           {% render "partials/post-types/person-loop.liquid"  person: person%}
         {% endfor %}
     </section>
 </div>
