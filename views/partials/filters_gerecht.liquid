@@ -1,6 +1,6 @@
 <div class="part-filters">
     <div class="filter-inner-container">
-      <form id="searchForm" action="/search" method="GET">
+      <form id="searchForm">
         <label class="label-hidden" for="search">Vul hier je zoekterm in</label>
         <input type="text" id="search" class="searchInput" name="search" placeholder="Zoek..." autocomplete="off">
         <button type="submit" class="button-form button-form-submit searchSubmit" id="searchSubmit" aria-label="Zoekopdracht uitvoeren">
@@ -53,12 +53,16 @@
 
         <fieldset class="fieldset-filter-dish">
           <legend class="visually-hidden">Filter op gerecht</legend>
-          <select id="filter-dish" class="filter-dish" aria-labelledby="filter-label">
+          <select id="filter-dish" class="filter-dish" aria-labelledby="filter-label"{% for person in persons limit:1 %}{% if person.fav_kitchen != "" and person.fav_kitchen != null %}{% endif %} value="{{person.fav_kitchen}}"{% endfor %}>
             <option value="">Gerecht</option>
             {% for dish in dishes %}
-              <option value="{{ dish.fav_kitchen }}">
-                {{ dish.fav_kitchen }}
-              </option>
+              <option value="{{ dish.fav_kitchen }}"
+              {% for person in persons limit:1 %}
+                {% if person.fav_kitchen == dish.fav_kitchen %}
+                  selected
+                {% endif  %}
+              {% endfor %}
+              >{{ dish.fav_kitchen }}</option>
             {% endfor %}
 
           </select>

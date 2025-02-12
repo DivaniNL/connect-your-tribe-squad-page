@@ -22,6 +22,9 @@ const squadResponseJSON = await squadResponse.json()
 // Controleer de data in je console (Let op: dit is _niet_ de console van je browser, maar van NodeJS, in je terminal)
 // console.log(squadResponseJSON)
 
+const foodResponse = await fetch("https://fdnd.directus.app/items/person/?filter[fav_kitchen][_neq]=null&sort=fav_kitchen&groupBy=fav_kitchen");
+const foodResponseJSON = await foodResponse.json();
+
 
 // Maak een nieuwe Express applicatie aan, waarin we de server configureren
 const app = express()
@@ -46,7 +49,7 @@ app.use(express.urlencoded({extended: true}))
 // Maak een GET route voor de index
 app.get('/', async function (request, response) {
   // Haal alle personen uit de WHOIS API op, van dit jaar
-  const personResponse = await fetch('https://fdnd.directus.app/items/person/?sort=name&fields=*,squads.squad_id.name,squads.squad_id.cohort&filter={"_and":[{"squads":{"squad_id":{"tribe":{"name":"FDND Jaar 1"}}}},{"squads":{"squad_id":{"cohort":"2425"}}}]}')
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?sort=name&fields=*,squads.squad_id.name,squads.squad_id.cohort&filter={"_and":[{"squads":{"squad_id":{"tribe":{"name":"FDND Jaar 1"}}}},{"squads":{"squad_id":{"cohort":"2425"}}},{"squads":{"squad_id":{"name":"1G"}}}]}&fields=id,name,avatar,nickname,bio,fav_color')
 
   // En haal daarvan de JSON op
   const personResponseJSON = await personResponse.json()
@@ -57,7 +60,22 @@ app.get('/', async function (request, response) {
 
   // Render index.liquid uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
   // Geef ook de eerder opgehaalde squad data mee aan de view
-  response.render('index.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
+  response.render('index.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data, dishes: foodResponseJSON.data})
+})
+app.get('/gerecht', async function (request, response) {
+  // Haal alle personen uit de WHOIS API op, van dit jaar
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?sort=name&fields=*,squads.squad_id.name,squads.squad_id.cohort&filter={"_and":[{"squads":{"squad_id":{"tribe":{"name":"FDND Jaar 1"}}}},{"squads":{"squad_id":{"cohort":"2425"}}},{"squads":{"squad_id":{"name":"1G"}}}]}&fields=id,name,avatar,nickname,bio,fav_color')
+
+  // En haal daarvan de JSON op
+  const personResponseJSON = await personResponse.json()
+  console.log(personResponseJSON);
+  
+  // personResponseJSON bevat gegevens van alle personen uit alle squads van dit jaar
+  // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
+
+  // Render index.liquid uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
+  // Geef ook de eerder opgehaalde squad data mee aan de view
+  response.render('index.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data, dishes: foodResponseJSON.data})
 })
 
 // Maak een POST route voor de index; hiermee kun je bijvoorbeeld formulieren afvangen
@@ -78,8 +96,40 @@ app.get('/student/:id', async function (request, response) {
   
   // Render student.liquid uit de views map en geef de opgehaalde data mee als variable, genaamd person
   // Geef ook de eerder opgehaalde squad data mee aan de view
-  response.render('student.liquid', {person: personDetailResponseJSON.data, squads: squadResponseJSON.data})
+  response.render('student.liquid', {person: personDetailResponseJSON.data})
 })
+
+
+// Maak een GET route voor een detailpagina met een route parameter, id
+// Zie de documentatie van Express voor meer info: https://expressjs.com/en/guide/routing.html#route-parameters
+app.get('/gerecht/:fav_kitchen', async function (request, response) {
+  // Gebruik de request parameter id en haal de juiste persoon uit de WHOIS API op
+  const gerechtFilterResponse = await fetch('https://fdnd.directus.app/items/person/?filter={"fav_kitchen":{"_icontains":"' + request.params.fav_kitchen + '"}}&fields=id,name,avatar,nickname,bio,fav_color,fav_kitchen');
+  const your_fav_dish = request.params.fav_kitchen;
+  // En haal daarvan de JSON op
+  const gerechtFilterResponseJSON = await gerechtFilterResponse.json()
+  console.log(gerechtFilterResponseJSON);
+  // Render student.liquid uit de views map en geef de opgehaalde data mee als variable, genaamd person
+  // Geef ook de eerder opgehaalde squad data mee aan de view
+  response.render('gerecht.liquid', {persons: gerechtFilterResponseJSON.data, dishes: foodResponseJSON.data, fav: your_fav_dish})
+})
+
+
+app.get('/search/:name', async function (request, response) {
+  // Gebruik de request parameter id en haal de juiste persoon uit de WHOIS API op
+  const searchResponse = await fetch('https://fdnd.directus.app/items/person/?filter={"name":{"_contains":"' + request.params.name + '"}}');
+  // En haal daarvan de JSON op
+  const searchResponseJSON = await searchResponse.json()
+  
+  // Render student.liquid uit de views map en geef de opgehaalde data mee als variable, genaamd person
+  // Geef ook de eerder opgehaalde squad data mee aan de view
+  response.render('index.liquid', {persons: searchResponseJSON.data})
+})
+
+
+
+
+
 
 
 // Stel het poortnummer in waar express op moet gaan luisteren

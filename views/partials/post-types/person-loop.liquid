@@ -1,6 +1,5 @@
 <article class="one-person">
     <a href="/student/{{ person.id }}" aria-label="Bekijk profiel van {{ person.name }}" class="profile-link">
-
         <figure>
             {% if person.avatar != "" and person.avatar != null %}
                 <img src="{{person.avatar}}" alt="Profielfoto van {{ person.name }}" class="profile-image">
