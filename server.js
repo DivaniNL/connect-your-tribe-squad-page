@@ -103,14 +103,18 @@ app.get('/student/:id', async function (request, response) {
 // Maak een GET route voor een detailpagina met een route parameter, id
 // Zie de documentatie van Express voor meer info: https://expressjs.com/en/guide/routing.html#route-parameters
 app.get('/gerecht/:fav_kitchen', async function (request, response) {
-  // Gebruik de request parameter id en haal de juiste persoon uit de WHOIS API op
+  // Gebruik de request parameter id en haal de juiste personen uit de WHOIS API op
   const gerechtFilterResponse = await fetch('https://fdnd.directus.app/items/person/?filter={"fav_kitchen":{"_icontains":"' + request.params.fav_kitchen + '"}}&fields=id,name,avatar,nickname,bio,fav_color,fav_kitchen');
   const your_fav_dish = request.params.fav_kitchen;
   // En haal daarvan de JSON op
   const gerechtFilterResponseJSON = await gerechtFilterResponse.json()
   console.log(gerechtFilterResponseJSON);
-  // Render student.liquid uit de views map en geef de opgehaalde data mee als variable, genaamd person
+  // Render gerecht.liquid uit de views map en geef de opgehaalde data mee als variable, genaamd persons en dishes
   // Geef ook de eerder opgehaalde squad data mee aan de view
+
+
+  //Persons: alle personen met het juiste favoriete gerecht
+  // Dishes, een lijst met alle gerechten die minsens een keer zijn gekozen. Deze wordt gebruikt om de select options te vullen.
   response.render('gerecht.liquid', {persons: gerechtFilterResponseJSON.data, dishes: foodResponseJSON.data, fav: your_fav_dish})
 })
 
