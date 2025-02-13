@@ -32,60 +32,16 @@
         </button>
         <label for="filter-namemode"><span id="searchType">Bij-modus</span></label>
       </div>
-      {% if dishes.size  > 0 %}
-        <input type="checkbox" name="filter-dish-list-toggler" class="filter-dish-list-toggler mobile-hidden" aria-label="Toon gerechten" id="filter-dish-list-toggler" data-selected-dish="Gerecht-Filter: Geen" data-selected-dish-short="Gerecht">
-        <label for="filter-dish-list-toggler" class="mobile-hidden">Kies een gerecht</label>
-      {% endif %}
-      {% if dishes.size > 0 %}
-        <ul class="filter-dish-list mobile-hidden">
-          {% for dish in dishes %}
-            <li class="filter-dish-list-item">
-              <a href="/gerecht/{{ dish.fav_kitchen }}">
-                <img src="/assets/img/dishes/{{ dish.fav_kitchen }}.jpg" alt="afbeelding van {{ dish.fav_kitchen }}" class="filter-dish-list-item-image">
-                <span aria-hidden="true">{{ dish.fav_kitchen }}</span>
-              <span class="visually-hidden">Filter op {{ dish.fav_kitchen }}</span>
-              </a>
-            </li>
-          {% endfor %}
-          <li class="filter-dish-list-item">
-            <a href="/gerecht/">
-              <img src="/assets/img/dishes/Reset.jpg" alt="Reset Filter" class="filter-dish-list-item-image">
-              Reset Filter
-            </a>
-        </ul>
-      {% endif %}
+      
+      
       <div class="button-container button-form-container button-form-container-random">
-        <a href="/random" class="button-form-container-random-link">
-          <button type="button" class="button-form button-form-random" id="filter-random" aria-label="Wissel tussen random en normale modus. Dit is nu de Normale modus">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-              <rect width="64" height="64" fill="url(#pattern0_15_2772)"/>
-              <defs>
-              <pattern id="pattern0_15_2772" patternContentUnits="objectBoundingBox" width="1" height="1">
-              <use xlink:href="#image0_15_2772" transform="scale(0.0147059)"/>
-              </pattern>
-              <image id="image0_15_2772" width="68" height="68" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAACiUlEQVR4Ae2Y0U3EMBBE6REhUQAdXAn80QYSNVAFTdAAHRjlY6Xo2dbasc8exJ4UORuvd2deTC7cw0N8gsBdCXz/pKR03NVsS3ElGIeWFs1Tc9QAeHqmmi8V8wSozZc8TLlWM/rx+ZWUjprOKRDORWqNlGAcWmo6z16GztlADYCnh/qHYByLWdAToDZP/ZeBsFDNaBL71HTSTzcYFqg1EuNRfcDTTzMQLiQINQCeHuqnPxcMF7CgJ0BtnvrpL4Dgf68A0gqEW4lbTe1PoVcP/dBvtlOYwAK9AtTy6Yd+7wbk8e2WVh6t4AMISC0HYrvi6f01rTysL/xnYQABkuVAVu6KUi/4z8IAAiRyQKDPfc6M5nN9AAGRABJAQACh3A6x9wUbS98U52uWZ+N5rnQO/1kYQIBEDkjprs68Bv9ZGECARA4I9MV7yJ8D8vxyS+eDW4yGGHvPg9X57Ec/Z6/HefYDERNYgA0YBxAQ8YDY+4SNs/MhJwt5g7kBlu8QA2HjvwfiARidz7YELsjtkFHD3nr4z0I5IFTYa7A3n/0CCIgEkAACAgjldoh93droPRMsz0YvH/6zMIAAiRwQ7w6PzsN/FgYQIFkOxPqP3une9dbXGwMICG0DAh0yYQDBregGYr8H8HcCFkIf+ZD66c98V0cuYEF5AhBI/fRXBWETXMCC6CcfUj/9me/qyAUsKE8AAqmf/qogOMGFLGwx+m8PTRdH+qFfN2YBNrB4OwEIMF0c6ccFUEtgITZSj6m/5rP5OguqA6A+6m827iWysMUUsDs2XRw9f93zbGDxbgDsb7o4dhtuXcBG6nGrr8t56gCo77LRqwspYHd81ce0dbsBsP80Y1EoCBQJ/AKSRUV6nHamKgAAAABJRU5ErkJggg=="/>
-              </defs>
-            </svg>
+        <a href="/" class="button-form-container-random-link">
+          <button type="button" class="button-form button-form-random" id="filter-random" aria-label="Wissel tussen random en normale modus. Dit is nu de Random modus">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="68" height="68" viewBox="0 0 68 68" fill="none"><rect width="68" height="68" fill="url(#pattern0_113_184)"/><defs><pattern id="pattern0_113_184" patternContentUnits="objectBoundingBox" width="1" height="1"><use xlink:href="#image0_113_184" transform="scale(0.0147059)"/></pattern><image id="image0_113_184" width="68" height="68" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAAC8UlEQVR4Ae2ZQW4bMQxFc8kA3QTd9Aa9U8/QU2TdfS/QCxRTDNAXGM/mSBorIy5owGAoUeT/T+OicV5e6lUEPpXA7z/blun9qWZ7mmeCsWvp0Ty1JhuAlp6p5h81awnItv/Iw5S1yOiPn+9bpnekcwqE2ybRoEwwdi2RzlsvT/3sAdkAtPRY/1Mw9sNu2BKQbd/6TwNxo8joluwV6bSfYTBuEA1KxiP8B95+uoH4oEFkA9DSY/321wTjA27YEpBt3/rtr4Dod68C0gvEj5IftdkfhV9vr9vRe/Y8+7HfuyfFBW4wW+ARjH1v9st+7PdyIAbw9+vrdvR2/bOACogILgfiGz56Gnr23E9+m2kBEaJlQLjJnlvfa/zqPcccn4/yAiIyy4C0blg6m+msfgVEqC8Hwmc6ulHpG06jvsxtNSwgInQ5kOgGWecmz0b6RFH+79ICIiSXAeHGo5tjXfqGU/pEER1R4wIiMpcBiW6Mden6+A6EdW6W6HVyIn2jSJ1jARGRYSBfvn3fbt9uoP4faXRTrPvmWacBOdHr5PShLorUO9rPrdf957sviFzgBh5AHgljHSOud06918npQ10UqXe0H/u9DAjCERjl0brPURdF6h0LiIhcBoS50Y2x7jrno3XUE+kXxQIiMgWkgIiA0sufEObzmXb0vnPqve6cOiL7rVhARCgdEP5jJZ3NlHM8EY7NBv8LCohILQOCDt8kOTfeGznnyJzeWEBEajkQ6Tn8S79v/1HufqN5ARGxdECkr/nEuP7ZvICI4DAQviDxFydupDnpU+u3P3yH0QfcMD0BCbR++wtBsOEDbqh56VPrtz98h9EH3DA9AQm0fvsLQXjDB92YXPOXp+hytB/7beZu4AHkywlIALoc7acJICpwIw/Knlt/5LN73Q2zA7A+6+823ip0Y3ILWJ2jy7Hlb3jfA8hXA/B8dDkOG+494EHZ815fp+uyA7C+00bPHrSA1flZH9POrQbg+dOMVaMi8JDAPxlO5Jkg5CZUAAAAAElFTkSuQmCC"/></defs></svg>
           </button>
-          <label for="filter-random" class="filter-random">Random</label>
+          <label for="filter-random" class="filter-random">Reset</label>
         </a>
       </div>
-
-      <form action="/" id="dishForm" class="desktop-hidden">
-
-        <fieldset class="fieldset-filter-dish">
-          <legend class="visually-hidden">Filter op gerecht</legend>
-          <select id="filter-dish" class="filter-dish" aria-labelledby="filter-label">
-            <option value="">Gerecht</option>
-            {% for dish in dishes %}
-              <option value="{{ dish.fav_kitchen }}">
-                {{ dish.fav_kitchen }}
-              </option>
-            {% endfor %}
-          </select>
-          <label id="filter-dish-label" class="filter-dish-label">Gerecht</label>
-        </fieldset>
-      </form>
     </div>
    
 

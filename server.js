@@ -47,6 +47,13 @@ app.use(express.urlencoded({extended: true}))
 
 // Om Views weer te geven, heb je Routes nodig
 // Maak een GET route voor de index
+
+const list_randomInt1G = [25 ,144 ,145 ,146 ,147 ,148 ,149 ,69 ,150 ,152 ,151 ,153 ,154 ,155 ,156 ,157 ,158 ,65 ,159 ,160 ,161 ,162 ,80 ,163 ,164 ,43 ,165 ,71 ,166 ,167];
+function randomInt1G(){ 
+  return list_randomInt1G[Math.floor(Math.random() * list_randomInt1G.length)];
+} 
+
+
 app.get('/', async function (request, response) {
   // Haal alle personen uit de WHOIS API op, van dit jaar
   const personResponse = await fetch('https://fdnd.directus.app/items/person/?sort=name&fields=*,squads.squad_id.name,squads.squad_id.cohort&filter={"_and":[{"squads":{"squad_id":{"tribe":{"name":"FDND Jaar 1"}}}},{"squads":{"squad_id":{"cohort":"2425"}}},{"squads":{"squad_id":{"name":"1G"}}}]}&fields=id,name,avatar,nickname,bio,fav_color')
@@ -62,6 +69,25 @@ app.get('/', async function (request, response) {
   // Geef ook de eerder opgehaalde squad data mee aan de view
   response.render('index.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data, dishes: foodResponseJSON.data})
 })
+
+app.get('/random', async function (request, response) {
+  
+  const randomInt = randomInt1G();
+  console.log(randomInt);
+  // Haal alle personen uit de WHOIS API op, van dit jaar
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/' + randomInt + '?fields=id,name,avatar,nickname,bio,fav_color')
+  // En haal daarvan de JSON op
+  const personResponseJSON = await personResponse.json()
+  console.log(personResponseJSON);
+
+  // personResponseJSON bevat gegevens van alle personen uit alle squads van dit jaar
+  // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
+
+  // Render index.liquid uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
+   
+  response.render('random.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data, dishes: foodResponseJSON.data, random: true})
+});
+
 app.get('/gerecht', async function (request, response) {
   // Haal alle personen uit de WHOIS API op, van dit jaar
   const personResponse = await fetch('https://fdnd.directus.app/items/person/?sort=name&fields=*,squads.squad_id.name,squads.squad_id.cohort&filter={"_and":[{"squads":{"squad_id":{"tribe":{"name":"FDND Jaar 1"}}}},{"squads":{"squad_id":{"cohort":"2425"}}},{"squads":{"squad_id":{"name":"1G"}}}]}&fields=id,name,avatar,nickname,bio,fav_color')

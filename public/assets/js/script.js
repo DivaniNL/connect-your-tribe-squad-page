@@ -2,19 +2,18 @@ document.addEventListener("DOMContentLoaded", function () {
     let nicknameMode = false;
     let icon_bee = document.querySelector(".icon-bee");
     let icon_ひと = document.querySelector(".icon-ひと");
-    let button = document.querySelector(".filter-namemode");
+    let button_namemode = document.querySelector(".filter-namemode");
     let label = document.querySelector("#searchType");
 
-    button.addEventListener("click", function () {
+    button_namemode.addEventListener("click", function () {
         nicknameMode = !nicknameMode;
-        console.log("changed nickname mode to", nicknameMode);
         if (nicknameMode){
             //verander de iconen
             icon_bee.style.display = "none";
             icon_ひと.style.display = "inline";
             console.log("hoi");
             // Verander de aria-label en label van de knop
-            button.ariaLabel = "Wissel tussen bij- en normale-modus. Dit is nu de Bijnaam modus";
+            button_namemode.ariaLabel = "Wissel tussen bij- en normale-modus. Dit is nu de Bijnaam modus";
             label.textContent = "Normale modus";
         }
         else{
@@ -23,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
             icon_ひと.style.display = "none";
 
             // Verander de aria-label en label van de knop
-            button.ariaLabel = "Wissel tussen bij- en normale-modus. Dit is nu de Normale modus";
+            button_namemode.ariaLabel = "Wissel tussen bij- en normale-modus. Dit is nu de Normale modus";
             label.textContent = "Bij-modus";
         }
         document.querySelectorAll(".one-person").forEach((personElement) => {
@@ -46,6 +45,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+
+
+
+
+
+
+
+
     let select = document.querySelector("#filter-dish");
     let url = window.location.href;
     let dish = url.split("/gerecht/")[1];

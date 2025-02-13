@@ -70,7 +70,7 @@ main{
                     margin-left: auto;
                     align-items: center;
                     background-color: var(--color-white);
-                    &:focus-visible, &:hover{
+                    &:focus, &:hover{
                         background-color: var(--color-active-filter);
                     }
                     &:focus{
@@ -126,6 +126,36 @@ main{
                         grid-row: initial;
                         order: 2;
                         margin-left: auto;
+                    }
+                    label{
+                        font-size: 0.75rem;
+                        max-width: 89px;
+                        font-weight: bold;
+                        text-align: center;
+                        width: 100%;
+                        min-height: 38px;
+                        display: block;
+                        @media (min-width :335px){
+                            font-size: 1rem;
+                        }
+                    }
+                    a.button-form-container-random-link{
+                        &:focus, &:hover{
+                            .button-form.button-form-random{
+                                background-color: var(--color-active-filter);
+                                border-color: var(--color-active-filter-border);
+                            }
+                            label{
+                                color: var(--color-active-filter-border);
+                            }
+                        }
+                        &:focus{
+                            .button-form.button-form-random{
+                                outline-color: var(--color-active-filter-border);
+                            }
+                        }
+                        
+
                     }
                 }
                 .button-form{
@@ -188,6 +218,15 @@ main{
                     &:after{
                         content: attr(data-selected-dish);
                     }
+                }
+                &:focus-visible, &:hover{
+                    background-color: var(--color-active-filter);
+                }
+                &:focus{
+                    outline-color: var(--color-active-filter-border);
+                }
+                &:hover{
+                    border-color: var(--color-active-filter-border);
                 }
             }
             form#dishForm{

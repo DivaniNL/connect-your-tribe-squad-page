@@ -1,13 +1,16 @@
 <div class="part-results">
     <section class="person-list">
-
         <h2 class="text-xl">Resultaten</h2>
-        {% if persons.size  > 0 %}
-            {% for person in persons %}
-            {% render "partials/post-types/person-loop.liquid"  person: person%}
-            {% endfor %}
+        {% if random == true %}
+            {% render "partials/post-types/person-loop.liquid"  person: persons random: random %}
         {% else %}
-            <p>Deze request geeft geen valide data</p>
+            {% if persons.size  > 0 %}
+                {% for person in persons %}
+                {% render "partials/post-types/person-loop.liquid"  person: person random: random%}
+                {% endfor %}
+            {% else %}
+                <p>Deze request geeft geen valide data</p>
+            {% endif %}
         {% endif %}
     </section>
 </div>

@@ -32,6 +32,7 @@ html{
 a {
     text-decoration: none;
     font-size: inherit !important;
+    color: inherit;
 }
 .text-xl{
     font-size: var(--font-size-l);
