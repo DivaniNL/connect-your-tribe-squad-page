@@ -33,21 +33,17 @@
         <label for="filter-namemode"><span id="searchType">Bij-modus</span></label>
       </div>
       {% if dishes.size  > 0 %}
-        <input type="checkbox" name="filter-dish-list-toggler" class="filter-dish-list-toggler mobile-hidden" aria-label="Toon gerechten" id="filter-dish-list-toggler" {% for person in persons limit:1 %}
-            {% if person.fav_kitchen != "" and person.fav_kitchen != null %}
-              data-selected-dish="Gerecht-Filter: {{ person.fav_kitchen }}" data-selected-dish-short="{{ person.fav_kitchen }}"
-            {% endif %}
-          {% endfor %}
-        >	
+        <input type="checkbox" name="filter-dish-list-toggler" class="filter-dish-list-toggler mobile-hidden" aria-label="Toon gerechten" id="filter-dish-list-toggler" {% for person in persons limit:1 %}{% if person.fav_kitchen != "" and person.fav_kitchen != null %}data-selected-dish="Gerecht-Filter: {{ person.fav_kitchen }}" data-selected-dish-short="{{ person.fav_kitchen }}"{% endif %}{% endfor %}>	
         <label for="filter-dish-list-toggler" class="mobile-hidden">Kies een gerecht</label>
       {% endif %}
       {% if dishes.size > 0 %}
         <ul class="filter-dish-list mobile-hidden">
           {% for dish in dishes %}
-            <li class="filter-dish-list-item">
-              <a href="/gerecht/{{ dish.fav_kitchen }}" aria-label="Filter op {{ dish.fav_kitchen }}">
+            <li class="filter-dish-list-item{% for person in persons limit:1 %}{% if person.fav_kitchen == dish.fav_kitchen %} selected{% endif  %}{% endfor %}">
+              <a href="/gerecht/{{ dish.fav_kitchen }}">
                 <img src="/assets/img/dishes/{{ dish.fav_kitchen }}.jpg" alt="afbeelding van {{ dish.fav_kitchen }}" class="filter-dish-list-item-image">
-                {{ dish.fav_kitchen }}
+                <span aria-hidden="true">{{ dish.fav_kitchen }}</span>
+                <span class="visually-hidden">Filter op {{ dish.fav_kitchen }}{% for person in persons limit:1 %}{% if person.fav_kitchen == dish.fav_kitchen %}. Dit is nu de geselecteerde filter.{% endif  %}{% endfor %}</span>
               </a>
             </li>
           {% endfor %}

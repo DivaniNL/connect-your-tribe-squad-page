@@ -291,6 +291,18 @@ main{
                         }          
                     }
                 }
+                &.selected{
+                    a{
+                        background-color: var(--color-active-filter);
+                        border-color: var(--color-active-filter-border);
+                        outline-color: var(--color-active-filter-border);
+                        color: var(--color-active-filter-border);
+                        scale: 1.05;
+                        img{
+                            border-bottom: 2px solid var(--color-active-filter-border);
+                        }
+                    }
+                }
             }
         }
         &:has(.filter-dish-list-toggler:checked) .filter-dish-list{

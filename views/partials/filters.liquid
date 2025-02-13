@@ -42,7 +42,8 @@
             <li class="filter-dish-list-item">
               <a href="/gerecht/{{ dish.fav_kitchen }}">
                 <img src="/assets/img/dishes/{{ dish.fav_kitchen }}.jpg" alt="afbeelding van {{ dish.fav_kitchen }}" class="filter-dish-list-item-image">
-                {{ dish.fav_kitchen }}
+                <span aria-hidden="true">{{ dish.fav_kitchen }}</span>
+              <span class="visually-hidden">Filter op {{ dish.fav_kitchen }}</span>
               </a>
             </li>
           {% endfor %}
