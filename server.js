@@ -60,7 +60,6 @@ app.get('/', async function (request, response) {
 
   // En haal daarvan de JSON op
   const personResponseJSON = await personResponse.json()
-  console.log(personResponseJSON);
   
   // personResponseJSON bevat gegevens van alle personen uit alle squads van dit jaar
   // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
@@ -73,12 +72,10 @@ app.get('/', async function (request, response) {
 app.get('/random', async function (request, response) {
   
   const randomInt = randomInt1G();
-  console.log(randomInt);
   // Haal alle personen uit de WHOIS API op, van dit jaar
   const personResponse = await fetch('https://fdnd.directus.app/items/person/' + randomInt + '?fields=id,name,avatar,nickname,bio,fav_color')
   // En haal daarvan de JSON op
   const personResponseJSON = await personResponse.json()
-  console.log(personResponseJSON);
 
   // personResponseJSON bevat gegevens van alle personen uit alle squads van dit jaar
   // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
@@ -94,7 +91,6 @@ app.get('/gerecht', async function (request, response) {
 
   // En haal daarvan de JSON op
   const personResponseJSON = await personResponse.json()
-  console.log(personResponseJSON);
   
   // personResponseJSON bevat gegevens van alle personen uit alle squads van dit jaar
   // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
@@ -134,7 +130,6 @@ app.get('/gerecht/:fav_kitchen', async function (request, response) {
   const your_fav_dish = request.params.fav_kitchen;
   // En haal daarvan de JSON op
   const gerechtFilterResponseJSON = await gerechtFilterResponse.json()
-  console.log(gerechtFilterResponseJSON);
   // Render gerecht.liquid uit de views map en geef de opgehaalde data mee als variable, genaamd persons en dishes
   // Geef ook de eerder opgehaalde squad data mee aan de view
 
