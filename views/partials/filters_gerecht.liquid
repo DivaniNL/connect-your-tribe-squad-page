@@ -1,8 +1,7 @@
 <div class="part-filters">
     <div class="filter-inner-container">
-      <form id="searchForm">
-        <label class="label-hidden" for="search">Vul hier je zoekterm in</label>
-        <input type="text" id="search" class="searchInput" name="search" placeholder="Zoek..." autocomplete="off">
+      <form id="searchForm" action="/search" method="GET"> 
+        <input type="text" id="search" class="searchInput" name="search" placeholder="Zoek..." autocomplete="off" aria-label="Zoek naar een persoon" aria-describedby="searchSubmit">
         <button type="submit" class="button-form button-form-submit searchSubmit" id="searchSubmit" aria-label="Zoekopdracht uitvoeren">
           <svg xmlns="http://www.w3.org/2000/svg" width="35" height="33" viewBox="0 0 35 33" fill="none" aria-hidden="true">
             <path d="M25.0448 21.3407L24.3656 22.1598H25.4297H26.5439C26.8598 22.1598 27.1524 22.2762 27.363 22.4748L34.1765 28.9C34.1768 28.9003 34.1771 28.9006 34.1773 28.9008C34.6051 29.3094 34.605 29.9574 34.1716 30.3661L32.237 32.1904L32.2351 32.1923C31.7935 32.6131 31.0567 32.6157 30.6057 32.1904L23.7903 25.7634C23.5808 25.5658 23.4688 25.3033 23.4688 25.0313V23.9805V22.9906L22.672 23.5781C20.3441 25.2945 17.4127 26.3169 14.2188 26.3169C6.61235 26.3169 0.5 20.512 0.5 13.4085C0.5 6.30495 6.61235 0.5 14.2188 0.5C21.8251 0.5 27.9375 6.30495 27.9375 13.4085C27.9375 16.3988 26.8615 19.1495 25.0448 21.3407ZM4.96875 13.4085C4.96875 18.2761 9.13791 22.1598 14.2188 22.1598C19.307 22.1598 23.4688 18.2692 23.4688 13.4085C23.4688 8.5408 19.2996 4.6571 14.2188 4.6571C9.13055 4.6571 4.96875 8.54774 4.96875 13.4085Z" fill="black" stroke="black"/>
@@ -33,7 +32,32 @@
         </button>
         <label for="filter-namemode"><span id="searchType">Bij-modus</span></label>
       </div>
-
+      {% if dishes.size  > 0 %}
+        <input type="checkbox" name="filter-dish-list-toggler" class="filter-dish-list-toggler mobile-hidden" aria-label="Toon gerechten" id="filter-dish-list-toggler" {% for person in persons limit:1 %}
+            {% if person.fav_kitchen != "" and person.fav_kitchen != null %}
+              data-selected-dish="Gerecht-Filter: {{ person.fav_kitchen }}" data-selected-dish-short="{{ person.fav_kitchen }}"
+            {% endif %}
+          {% endfor %}
+        >	
+        <label for="filter-dish-list-toggler" class="mobile-hidden">Kies een gerecht</label>
+      {% endif %}
+      {% if dishes.size > 0 %}
+        <ul class="filter-dish-list mobile-hidden">
+          {% for dish in dishes %}
+            <li class="filter-dish-list-item">
+              <a href="/gerecht/{{ dish.fav_kitchen }}" aria-label="Filter op {{ dish.fav_kitchen }}">
+                <img src="/assets/img/dishes/{{ dish.fav_kitchen }}.jpg" alt="afbeelding van {{ dish.fav_kitchen }}" class="filter-dish-list-item-image">
+                {{ dish.fav_kitchen }}
+              </a>
+            </li>
+          {% endfor %}
+          <li class="filter-dish-list-item">
+            <a href="/">
+              <img src="/assets/img/dishes/Reset.jpg" alt="Reset Filter" class="filter-dish-list-item-image">
+              Reset Filter
+            </a>
+        </ul>
+      {% endif %}
       <div class="button-container button-form-container button-form-container-random">
         <button type="button" class="button-form button-form-random" id="filter-random">
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
@@ -49,7 +73,7 @@
         <label for="filter-random">Random</label>
       </div>
 
-      <form action="/" id="dishForm">
+      <form action="/" id="dishForm" class="desktop-hidden">
 
         <fieldset class="fieldset-filter-dish">
           <legend class="visually-hidden">Filter op gerecht</legend>
@@ -69,7 +93,7 @@
           <label id="filter-dish-label" class="filter-dish-label">Gerecht</label>
         </fieldset>
       </form>
+
     </div>
-
-
+    
   </div>

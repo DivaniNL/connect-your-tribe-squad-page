@@ -2,13 +2,15 @@ main{
     .part-filters{
         background: var(--color-grey-light);
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-        padding: 13px;
+        
+        z-index: 9;
+        position: relative;
         .filter-inner-container{
+            padding: 13px;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             position: relative;
             row-gap: 7px;
-           
             form#searchForm{
 
                 grid-column: 1 / -1;
@@ -29,7 +31,7 @@ main{
                     grid-column: 1 / 4;
                     grid-row: 1 / 1;
                     order: 1;
-                    width: calc(100% - 73px);
+                    width: calc(100% - 54px);
                     padding: 0 7px;
                     border: 0;
                     border: 3px solid var(--color-primary);
@@ -49,6 +51,11 @@ main{
                     }
                     &:hover{
                         border-color: var(--color-active-filter-border);
+                    }
+                    @media (min-width: 940px){
+                        width: 200px;
+                        height: 88px;
+                        border-right: 0;
                     }
                 }
                 button#searchSubmit{
@@ -72,7 +79,15 @@ main{
                     &:hover{
                         border-color: var(--color-active-filter-border);
                     }
-                    
+                    @media (min-width: 940px){
+                        grid-row: initial;
+                        grid-row: initial;
+                        height: 88px;
+                        width: 88px;
+                    }
+                }
+                @media (min-width: 940px){
+                    display: flex;
                 }
             }
 
@@ -107,6 +122,11 @@ main{
                 }
                 &.button-form-container-random{
                     grid-row: 2 / 2;
+                    @media (min-width: 940px){
+                        grid-row: initial;
+                        order: 2;
+                        margin-left: auto;
+                    }
                 }
                 .button-form{
                     max-width: 89px;
@@ -121,6 +141,52 @@ main{
                 
                     @media (min-width :335px){
                         font-size: 1rem;
+                    }
+                }
+            }
+            input.filter-dish-list-toggler{    
+                position: relative;
+                background: white;
+                min-width: 175px;
+                -webkit-appearance: initial;
+                font-size: 14px;
+                font-family: Trebuchet, Arial, sans-serif;
+                font-weight: bold;
+                cursor: pointer;
+                height: 88px;
+                border: 3px solid var(--color-primary);
+                background-color: var(--color-primary-lighter);
+                &:after{
+                    position:absolute;
+                    top:50%;
+                    display:block; 
+                    line-height:32px;
+                    width:100%;
+                    translate: 0 -50%;
+                    box-sizing:border-box;
+                    text-align:center;
+                    transition: all 0.3s ease-in 0s; 
+                    color:black;
+                    font-size: var(--font-size-l);
+                    content: attr(data-selected-dish-short);
+                    padding: 9px;
+                    font-family: var(--font-family);
+                }
+                &+label{
+                    position: absolute;
+                    width: 1px;
+                    height: 1px;
+                    padding: 0;
+                    margin: -1px;
+                    overflow: hidden;
+                    clip: rect(0, 0, 0, 0);
+                    white-space: nowrap;
+                    border: 0;
+                }
+                @media (min-width: 1070px){
+                    min-width: 300px;
+                    &:after{
+                        content: attr(data-selected-dish);
                     }
                 }
             }
@@ -175,6 +241,60 @@ main{
                     }
                 }
             }
+            @media (min-width: 940px){
+                display: flex;
+                gap: 0.875rem;
+                padding: 35px 60px 15px 60px;
+                .button-form-container{
+                    grid-row: initial;
+                }
+            }
+            
+        }
+        ul.filter-dish-list{
+            position: absolute;
+            top: 100%;
+            background-color: var(--color-grey);
+            width: 100%;
+            list-style-type: none;
+            left: 0;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            column-gap: 3rem;
+            padding: 1rem 60px;
+            row-gap: 1rem;
+            display: none;
+            .filter-dish-list-item{
+                a{
+                    background-color: var(--color-grey-light);
+                    border: 2px solid var(--color-primary-light);
+                    display: grid;
+                    grid-template-rows: 1fr 46px;
+                    align-items: center;
+                    text-align: center;
+                    color: var(--color-black);
+                    font-weight: bold;
+                    transition: 0.2s ease;
+                    img.filter-dish-list-item-image{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-bottom: 2px solid var(--color-primary-light);
+                    }
+                    &:focus, &:hover{
+                        background-color: var(--color-active-filter);
+                        border-color: var(--color-active-filter-border);
+                        outline-color: var(--color-active-filter-border);
+                        color: var(--color-active-filter-border);
+                        scale: 1.05;
+                        img.filter-dish-list-item-image{
+                            border-bottom: 2px solid var(--color-active-filter-border);
+                        }          
+                    }
+                }
+            }
+        }
+        &:has(.filter-dish-list-toggler:checked) .filter-dish-list{
+            display: grid;
         }
     }
 }

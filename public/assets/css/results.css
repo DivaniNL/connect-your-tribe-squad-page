@@ -11,7 +11,7 @@
         @media (min-width: 600px){
             grid-template-columns: repeat(2, 1fr);
         }
-        @media (min-width: 860px){
+        @media (min-width: 940px){
             grid-template-columns: repeat(3, 1fr);
         }
         article.one-person{
@@ -25,6 +25,7 @@
                 figure{
                     display: flex;
                     border: 3px solid var(--color-primary);
+                    min-height: 200px;
                     img{
                         aspect-ratio: 1 / 1;
                         width: 100%;
@@ -62,7 +63,7 @@
     @media (min-width: 600px){
         padding: 45px 30px;
     }
-    @media (min-width: 860px){
+    @media (min-width: 940px){
         padding: 90px 60px;
     }
 }

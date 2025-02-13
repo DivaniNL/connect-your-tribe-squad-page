@@ -8,7 +8,7 @@ header{
         top: 0;
         width: 6.25rem;
         height: 6.25rem;
-        @media (min-width: 860px){
+        @media (min-width: 940px){
             width: 7.3125rem;
             height: 7.3125rem;   
         }
@@ -33,7 +33,7 @@ header{
                 }
             }
         }
-        @media (min-width: 860px){
+        @media (min-width: 940px){
             min-height: 7.3125rem;
             grid-template-columns: 7.3125rem minmax(0, 1332px); /* 117px GAP MAX */
         }

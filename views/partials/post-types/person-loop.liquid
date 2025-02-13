@@ -4,7 +4,7 @@
             {% if person.avatar != "" and person.avatar != null %}
                 <img src="{{person.avatar}}" alt="Profielfoto van {{ person.name }}" class="profile-image">
             {% else %}
-                <img src="assets/img/placeholder.png" alt="Geen profielfoto beschikbaar voor {{ person.name }}" class="profile-image">
+                <img src="/assets/img/placeholder.png" alt="Geen profielfoto beschikbaar voor {{ person.name }}" class="profile-image">
             {% endif %}
             {% if person.fav_color != "" and person.fav_color != null %}
                 <div class="background-fav_color" style="background-color: {{ person.fav_color }}"></div>

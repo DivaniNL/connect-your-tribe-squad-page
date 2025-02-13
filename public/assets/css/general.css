@@ -27,6 +27,7 @@ html{
     margin: 0;
     padding: 0;
     font-family: "Montserrat", sans-serif;
+    box-sizing: border-box;
 }
 a {
     text-decoration: none;
@@ -34,13 +35,13 @@ a {
 }
 .text-xl{
     font-size: var(--font-size-l);
-    @media (min-width: 860px) {
+    @media (min-width: 940px) {
         font-size: var(--font-size-xl);
     }
 }
 .text-l{
     font-size: var(--font-size-m);
-    @media (min-width: 860px) {
+    @media (min-width: 940px) {
         font-size: var(--font-size-l);
     }
 }
@@ -49,7 +50,7 @@ main{
     .grid-giver {
         display: grid;
         grid-template-columns: minmax(0.6875rem, 1fr) minmax(0, 1332px) minmax(0.6875rem, 1fr); /* 11px GAP MAX */
-        @media (min-width: 860px){
+        @media (min-width: 940px){
             grid-template-columns: minmax(3.75rem, 1fr) minmax(0, 1332px) minmax(3.75rem, 1fr); /* 60px GAP MAX */
         }
         .grid-receiver {
@@ -72,6 +73,16 @@ main{
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     border: 0;
+}
+.desktop-hidden{
+    @media (min-width: 940px){
+        display: none !important
+    }
+}
+.mobile-hidden{
+    @media (max-width: 940px){
+        display: none !important
+    }
 }
 
 /* Buttons */

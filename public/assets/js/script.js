@@ -63,7 +63,15 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "/";
         }
     });
+    const filterDishToggler = document.querySelector(".filter-dish-list-toggler");
 
+    filterDishToggler.addEventListener("change", function () {
+      if (filterDishToggler.checked) {
+        filterDishToggler.ariaLabel = "Verberg gerechten";
+      } else {
+        filterDishToggler.ariaLabel = "Toon gerechten";
+      }
+    });
 });
 
 
