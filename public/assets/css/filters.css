@@ -258,6 +258,7 @@ main{
                         font-size: 0.75rem;
                         font-family: var(--font-family);
                         font-weight: bold;
+                        color: var(--color-black);
                         @media (min-width :335px){
                             padding: 14px 14px 14px 7px;
                         }
