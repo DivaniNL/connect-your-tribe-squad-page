@@ -32,11 +32,20 @@
                     display: flex;
                     border: 3px solid var(--color-primary);
                     min-height: 200px;
-
+                    position: relative;
+                    
                     img{
                         aspect-ratio: 1 / 1;
                         width: 100%;
                         object-fit: cover;
+                    }
+                    /* Added fav color div */
+                    .background-fav_color{
+                        position: absolute;
+                        width: 100%;
+                        opacity: 0;
+                        height: 100%;
+                        transition: 0.2s ease;
                     }
                 }
 
@@ -57,7 +66,10 @@
                 &:focus-visible, &:hover{
                     background-color: var(--color-active-filter);
                     figure{
-                        border-color: var(--color-active-filter-border);            
+                        border-color: var(--color-active-filter-border);   
+                        .background-fav_color{
+                            opacity: 0.5;
+                        }         
                     }
                     scale: 1.05;
                 }
@@ -72,7 +84,7 @@
             }
         }
     }
-    
+
     @media (min-width: 600px){
         padding: 45px 30px;
     }
