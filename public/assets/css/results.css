@@ -1,39 +1,48 @@
 .part-results{
     padding: 25px 20px;
+
     h2{
         grid-column: 1 / -1;
         text-align: center;
     }
+
     section.person-list{
         display: grid;
         grid-template-columns: 1fr;
         gap: 40px;
+
         @media (min-width: 600px){
             grid-template-columns: repeat(2, 1fr);
         }
         @media (min-width: 940px){
             grid-template-columns: repeat(3, 1fr);
         }
+        
         article.one-person{
             background-color: var(--color-primary-lighter);
+
             a{
                 height: 100%;
                 overflow: hidden;
                 display: block;
                 color: var(--color-black);
                 transition: 0.2s ease;
+
                 figure{
                     display: flex;
                     border: 3px solid var(--color-primary);
                     min-height: 200px;
+
                     img{
                         aspect-ratio: 1 / 1;
                         width: 100%;
                         object-fit: cover;
                     }
                 }
+
                 .content{
                     padding: 1rem;
+
                     *{
                         text-align: left;
                     }
@@ -44,6 +53,7 @@
                         hyphens: auto;
                     }
                 }
+                /* States */
                 &:focus-visible, &:hover{
                     background-color: var(--color-active-filter);
                     figure{
@@ -51,18 +61,22 @@
                     }
                     scale: 1.05;
                 }
+
                 &:focus{
                     outline-color: var(--color-active-filter-border);
                 }
+
                 &:hover{
                     border-color: var(--color-active-filter-border);
                 }
             }
         }
     }
+    
     @media (min-width: 600px){
         padding: 45px 30px;
     }
+
     @media (min-width: 940px){
         padding: 90px 60px;
     }

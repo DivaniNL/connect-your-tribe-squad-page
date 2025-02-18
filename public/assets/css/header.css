@@ -2,27 +2,35 @@ header{
     position: relative;
     background-color: var(--color-primary-lighter);
     border-bottom: 4px solid var(--color-primary);
+
+    /* Headerlogo */
     img.logo-fdnd{
         position: absolute;
         left: 0;
         top: 0;
         width: 6.25rem;
         height: 6.25rem;
+
+        /* Make it bigger on desktop */
         @media (min-width: 940px){
             width: 7.3125rem;
             height: 7.3125rem;   
         }
+
     }
+
     .grid-giver {
         display: grid;
         min-height: 6.25rem;
         grid-template-columns: 6.25rem minmax(0, 1332px); /* 100px GAP MAX */
+
         .grid-receiver {
             grid-column: 2 / 2;
             position: relative;
             display: flex;
             justify-self: center;
             align-items: center;
+
             a{
                 color: var(--color-black);
                 transition: 0.1s ease;
@@ -32,7 +40,9 @@ header{
 
                 }
             }
+
         }
+        
         @media (min-width: 940px){
             min-height: 7.3125rem;
             grid-template-columns: 7.3125rem minmax(0, 1332px); /* 117px GAP MAX */
