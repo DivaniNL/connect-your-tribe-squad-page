@@ -1,11 +1,15 @@
 <article class="one-person">
+    {% comment %} Link naar detail pagina [TBD] {% endcomment %}
     <a href="/student/{{ person.id }}" aria-label="Bekijk profiel van {{ person.name }}" class="profile-link">
         <figure>
+            {% comment %} Als persoon avatar heeft, gebruikt die {% endcomment %}
             {% if person.avatar != "" and person.avatar != null %}
                 <img src="{{person.avatar}}" alt="Profielfoto van {{ person.name }}" class="profile-image">
             {% else %}
+            {% comment %} Anders gebruik een default afbeelding {% endcomment %}
                 <img src="/assets/img/placeholder.png" alt="Geen profielfoto beschikbaar voor {{ person.name }}" class="profile-image">
             {% endif %}
+            {% comment %} Test of de persoon een favoriete kleur heeft, zo ja plaats een div erachter {% endcomment %}
             {% if person.fav_color != "" and person.fav_color != null %}
                 <div class="background-fav_color" style="background-color: {{ person.fav_color }}"></div>
             {% endif %}

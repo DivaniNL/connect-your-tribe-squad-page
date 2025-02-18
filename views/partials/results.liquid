@@ -1,14 +1,15 @@
 <div class="part-results">
     <section class="person-list">
         <h2 class="text-xl">Resultaten</h2>
+        {% comment %} Als de random modus actieg is, gebruik dan de volledige array en loop niet door de datra heen, omdat het er maar 1 is {% endcomment %}
         {% if random == true %}
-            {% render "partials/post-types/person-loop.liquid"  person: persons random: random %}
+            {% render "partials/post-types/person-loop.liquid"  person: persons random: random %} {% comment %} Hier gebruik ik dus personS ipv person {% endcomment %}
         {% else %}
-            {% if persons.size  > 0 %}
-                {% for person in persons %}
-                {% render "partials/post-types/person-loop.liquid"  person: person random: random%}
+            {% if persons.size  > 0 %} {% comment %} Check of de lijst wel een lengte heeft {% endcomment %}
+                {% for person in persons %} {% comment %} Loop door de lijst {% endcomment %}
+                    {% render "partials/post-types/person-loop.liquid"  person: person random: random%} {% comment %} Zonder random mode, laad de instantie van de loop in {% endcomment %}
                 {% endfor %}
-            {% else %}
+            {% else %} {% comment %} Als de lijst geen lengte heeft {% endcomment %}
                 <p>Deze request geeft geen valide data</p>
             {% endif %}
         {% endif %}

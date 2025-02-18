@@ -1,12 +1,11 @@
 <div class="part-results">
     <section class="person-list">
-
         <h2 class="text-xl">Resultaten</h2>
-        {% if persons.size  > 0 %}
-            {% for person in persons %}
-            {% render "partials/post-types/person-loop.liquid"  person: person%}
+        {% if persons.size  > 0 %}{% comment %} Check of de lijst wel een lengte heeft {% endcomment %}
+            {% for person in persons %} {% comment %} Loop door de lijst. {% endcomment %}
+                {% render "partials/post-types/person-loop.liquid"  person: person%}
             {% endfor %}
-        {% else %}
+        {% else %} {% comment %} Als de lijst leeg is {% endcomment %}
             <p>Je hebt een slechte smaak, niemand vind  {{ fav }} lekker</p>
         {% endif %}
     </section>

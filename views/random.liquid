@@ -1,15 +1,17 @@
+{% comment %} <HEAD></HEAD> {% endcomment %}
 {% render 'partials/head.liquid', title: 'Squad page' %}
+{% comment %} <header></header> {% endcomment %}
 {% render 'partials/header.liquid' %}
 
 <main>
 
   <div class="grid-giver">
     <div class="grid-receiver">
-      {% render 'partials/filters_random.liquid' dishes: dishes, persons: persons %}
-      {% render 'partials/results.liquid' persons: persons random :random %}
+      {% render 'partials/filters_random.liquid' dishes: dishes, persons: persons %} {% comment %} Filter div {% endcomment %}
+      {% render 'partials/results.liquid' persons: persons random :random %} {% comment %} De plaats waar de studenten geloopt worden (result van de API call). In dit geval 1 persoon {% endcomment %}
     </div>
   </div>
 
 </main>
-
+{% comment %} Footer {% endcomment %}
 {% render 'partials/foot.liquid', squads: squads %}
