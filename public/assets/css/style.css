@@ -1,4 +1,4 @@
-@import url("./general.css");
-@import url("./header.css");
-@import url("./filters.css");
-@import url("./results.css");
+@import url("./general.css"); /* Main styling */
+@import url("./header.css");  /* Header */
+@import url("./filters.css"); /* Filter Div */
+@import url("./results.css"); /* Person loop */
